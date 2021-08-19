@@ -1,0 +1,7 @@
+[2021-08-10 01:08:44,694] [com.weiyang.vote.controller.UserController.createUser(UserController.java:16)] INFO ===> 请求接口: 新建用户 [createUser]
+[2021-08-10 01:08:44,717] [com.weiyang.vote.controller.UserController.createUser(UserController.java:17)] INFO ===> 请求内容: {"WxId":"CWM459819","Phone":"18588972939","WxName":"陈威仰","Gender":"男"}
+[2021-08-10 02:13:28,418] [com.weiyang.vote.controller.UserController.createUser(UserController.java:21)] INFO ===> 请求接口: 新建用户 [createUser]
+[2021-08-10 02:13:28,446] [com.weiyang.vote.controller.UserController.createUser(UserController.java:22)] INFO ===> 请求内容: {"WxId":"CWM459819","Phone":"18588972939","WxName":"陈威仰"}
+[2021-08-10 02:13:29,410] [com.weiyang.vote.service.impl.UserServiceImpl.createUser(UserServiceImpl.java:20)] INFO ===> 新增用户信息: User{id=10, wechatId='CWM459819', name='陈威仰', phone='18588972939', createTime=Tue Aug 10 02:13:28 CST 2021, updateTime=null}
+[2021-08-10 02:13:29,411] [com.weiyang.vote.service.impl.UserServiceImpl.createUser(UserServiceImpl.java:21)] INFO ===> 影响有效结果: 1
+[2021-08-10 02:13:29,411] [com.weiyang.vote.service.impl.UserServiceImpl.createUser(UserServiceImpl.java:22)] INFO ===> 新建用户ID: 10

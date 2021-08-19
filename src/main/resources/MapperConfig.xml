@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+    <properties resource="application.properties"/>
+
+    <!-- 安装适合于您的环境的事务管理器和数据源 -->
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${spring.datasource.driver-class-name}"/>
+                <property name="url" value="${spring.datasource.url}"/>
+                <property name="username" value="${spring.datasource.username}"/>
+                <property name="password" value="${spring.datasource.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <mappers>
+        <!-- XML mapper 文件应该在这里列出来 -->
+        <mapper resource="mapper/UserMapper.xml"/>
+        <mapper resource="mapper/VoteMapper.xml"/>
+        <mapper resource="mapper/VoteOptionMapper.xml"/>
+        <mapper resource="mapper/RelationshipMapper.xml"/>
+    </mappers>
+
+</configuration>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.weiyang.vote.mapper.RelationshipMapper">
+    <resultMap id="BaseResultMap" type="com.weiyang.vote.domain.pojo.Relationship">
+        <constructor>
+            <idArg column="user_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <idArg column="vote_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <idArg column="vote_option_id" javaType="java.lang.Integer" jdbcType="INTEGER"/>
+            <arg column="create_time" javaType="java.util.Date" jdbcType="TIMESTAMP"/>
+        </constructor>
+    </resultMap>
+    <sql id="Base_Column_List">
+        user_id
+        , vote_id, vote_option_id, create_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="com.weiyang.vote.domain.pojo.RelationshipKey"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from user_vote_relationship
+        where user_id = #{userId,jdbcType=INTEGER}
+        and vote_id = #{voteId,jdbcType=INTEGER}
+        and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
+    </select>
+    <select id="selectCountByVoteIdAndVoteOptionId" parameterType="com.weiyang.vote.domain.pojo.RelationshipKey" resultType="java.lang.Integer">
+        select COUNT(*)
+        FROM user_vote_relationship
+        where vote_id = #{voteId,jdbcType=INTEGER}
+          and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="com.weiyang.vote.domain.pojo.RelationshipKey">
+        delete
+        from user_vote_relationship
+        where user_id = #{userId,jdbcType=INTEGER}
+          and vote_id = #{voteId,jdbcType=INTEGER}
+          and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
+    </delete>
+    <insert id="insert" parameterType="com.weiyang.vote.domain.pojo.Relationship">
+        insert into user_vote_relationship (user_id, vote_id, vote_option_id,
+                                            create_time)
+        values (#{userId,jdbcType=INTEGER}, #{voteId,jdbcType=INTEGER}, #{voteOptionId,jdbcType=INTEGER},
+                #{createTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.weiyang.vote.domain.pojo.Relationship">
+        insert into user_vote_relationship
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                user_id,
+            </if>
+            <if test="voteId != null">
+                vote_id,
+            </if>
+            <if test="voteOptionId != null">
+                vote_option_id,
+            </if>
+            <if test="createTime != null">
+                create_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="userId != null">
+                #{userId,jdbcType=INTEGER},
+            </if>
+            <if test="voteId != null">
+                #{voteId,jdbcType=INTEGER},
+            </if>
+            <if test="voteOptionId != null">
+                #{voteOptionId,jdbcType=INTEGER},
+            </if>
+            <if test="createTime != null">
+                #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.weiyang.vote.domain.pojo.Relationship">
+        update user_vote_relationship
+        <set>
+            <if test="createTime != null">
+                create_time = #{createTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where user_id = #{userId,jdbcType=INTEGER}
+        and vote_id = #{voteId,jdbcType=INTEGER}
+        and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.weiyang.vote.domain.pojo.Relationship">
+        update user_vote_relationship
+        set create_time = #{createTime,jdbcType=TIMESTAMP}
+        where user_id = #{userId,jdbcType=INTEGER}
+          and vote_id = #{voteId,jdbcType=INTEGER}
+          and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
+    </update>
+</mapper>
