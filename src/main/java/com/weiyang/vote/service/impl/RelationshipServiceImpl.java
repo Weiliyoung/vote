@@ -47,5 +47,20 @@ public class RelationshipServiceImpl implements RelationshipService {
         logger.info("获取投票选项的统计结果成功，结果为：" + choicesStats);
         return choicesStats;
     }
+
+    @Override
+    public List<Integer> getMyJoinedVoteIdListByUserId(Integer userId) {
+        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+        RelationshipMapper relationshipMapper = sqlSession.getMapper(RelationshipMapper.class);
+        RelationshipKey relationshipKey = new RelationshipKey();
+        relationshipKey.setUserId(userId);
+        List<RelationshipKey> relationshipKeyList = relationshipMapper.selectVoteIdByUserId(userId);
+        List<Integer> voteIdList = new ArrayList<>();
+        for (RelationshipKey relationship : relationshipKeyList) {
+            voteIdList.add(relationship.getVoteId());
+        }
+        logger.info("我参与的VoteId：" + voteIdList);
+        return voteIdList;
+    }
 }
 

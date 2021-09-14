@@ -12,4 +12,5 @@ public interface VoteOptionService {
 
     List<VoteOption> getVoteOptionList(Integer voteId);
 
+    // List<VoteOption> getVoteOptionList(String wechatId);
 }

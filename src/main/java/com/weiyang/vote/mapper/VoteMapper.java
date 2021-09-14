@@ -20,4 +20,6 @@ public interface VoteMapper {
     int updateByPrimaryKeyWithBLOBs(Vote record);
 
     int updateByPrimaryKey(Vote record);
+
+    List<Vote> selectListByWechatId(String wechatId);
 }

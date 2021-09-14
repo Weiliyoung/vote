@@ -7,6 +7,8 @@ import com.weiyang.vote.utils.MyBatisUtils;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.log4j.Logger;
 
+import java.util.List;
+
 public class VoteServiceImpl implements VoteService {
 
     private static final Logger logger = Logger.getLogger(VoteOptionServiceImpl.class);
@@ -41,6 +43,20 @@ public class VoteServiceImpl implements VoteService {
         } else {
             logger.info("获取投票列表成功，投票列表：" + voteInfo.toString());
             return voteInfo;
+        }
+    }
+
+    @Override
+    public List<Vote> getMyCreatedVoteList(String wechatId) {
+        SqlSession sqlSession = MyBatisUtils.getSqlSession();
+        VoteMapper voteMapper = sqlSession.getMapper(VoteMapper.class);
+        List<Vote> voteList = voteMapper.selectListByWechatId(wechatId);
+        if (voteList.isEmpty()) {
+            logger.info("获取我创建的投票列表失败");
+            return null;
+        } else {
+            logger.info("获取我创建的投票列表成功，投票列表为：" + voteList.toString());
+            return voteList;
         }
     }
 }

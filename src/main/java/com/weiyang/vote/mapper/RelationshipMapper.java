@@ -20,4 +20,6 @@ public interface RelationshipMapper {
     int updateByPrimaryKeySelective(Relationship record);
 
     int updateByPrimaryKey(Relationship record);
+
+    List<RelationshipKey> selectVoteIdByUserId(Integer userId);
 }

@@ -22,6 +22,13 @@
         and vote_id = #{voteId,jdbcType=INTEGER}
         and vote_option_id = #{voteOptionId,jdbcType=INTEGER}
     </select>
+    <select id="selectVoteIdByUserId" parameterType="com.weiyang.vote.domain.pojo.RelationshipKey" resultType="java.lang.Integer"
+            resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from user_vote_relationship
+        where user_id = #{voteId,jdbcType=INTEGER}
+    </select>
     <select id="selectCountByVoteIdAndVoteOptionId" parameterType="com.weiyang.vote.domain.pojo.RelationshipKey" resultType="java.lang.Integer">
         select COUNT(*)
         FROM user_vote_relationship
